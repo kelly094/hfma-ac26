@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HFMA Annual AC26 — Team Prep Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #2A195A;
+    --blue: #2A195A;
+    --sky: #9487C2;
+    --accent: #2A195A;
+    --light-bg: #FFFCF8;
+    --rule: #e0d5c5;
+    --text: #1a1a1a;
+    --muted: #555555;
+    --white: #ffffff;
+    --day-bg: #E8F3E6;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  /* ── PRINT SETUP ─────────────────────────────── */
+  @page {
+    size: Letter portrait;
+    margin: 0.6in 0.65in 0.55in 0.65in;
+  }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    section { page-break-inside: avoid; }
+  }
+
+  /* ── ALWAYS WHITE SHEET ──────────────────────── */
+  .sheet { background: #ffffff; }
+
+  /* ── SCREEN PREVIEW ──────────────────────────── */
+  @media screen {
+    html { background: #ffffff; }
+    body { max-width: 850px; margin: 0 auto; padding: 0; background: #ffffff; }
+    .sheet { padding: 48px 52px; }
+    .print-btn {
+      display: flex; align-items: center; gap: 8px;
+      position: fixed; top: 24px; right: 24px;
+      background: var(--navy); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
+      border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer;
+      box-shadow: 0 2px 12px rgba(26,39,68,.25); letter-spacing: .3px;
+    }
+    .print-btn:hover { background: var(--blue); }
+  }
+
+  @media print {
+    body { background: none; padding: 0; max-width: none; margin: 0; }
+    .sheet { padding: 0; box-shadow: none; }
+  }
+
+  /* ── HEADER ──────────────────────────────────── */
+  .header {
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-left {}
+
+  .event-label {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+  }
+
+  .event-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22pt;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+
+  .event-title em {
+    font-style: italic;
+    color: var(--blue);
+  }
+
+  .header-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--navy);
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+
+  .header-meta p {
+    font-size: 9pt;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .header-meta strong { color: var(--text); font-weight: 600; }
+
+  /* ── SECTION HEADERS ─────────────────────────── */
+  .section-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    margin-top: 32px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── LOGISTICS GRID ──────────────────────────── */
+  .logistics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .logi-card {
+    background: var(--light-bg);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 11px 13px;
+  }
+
+  .logi-card .card-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  .logi-card .card-value {
+    font-size: 10pt;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.4;
+  }
+
+  .logi-card .card-value a {
+    color: var(--blue);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .logi-card.accent-card {
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+
+  .logi-card.accent-card .card-title { color: rgba(255,255,255,.55); }
+  .logi-card.accent-card .card-value { color: #fff; }
+  .logi-card.accent-card .card-value a { color: var(--accent); }
+
+  /* ── TRAVEL NOTE ─────────────────────────────── */
+  .travel-note {
+    border-left: 3px solid var(--accent);
+    background: #E8F3E6;
+    padding: 9px 13px;
+    border-radius: 0 4px 4px 0;
+    font-size: 9.5pt;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+
+  .travel-note strong { color: var(--navy); }
+
+  /* ── SCHEDULE TABLE ──────────────────────────── */
+  .schedule-section { margin-bottom: 22px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+  }
+
+  thead th {
+    background: var(--navy);
+    color: #fff;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  thead th:first-child { border-radius: 4px 0 0 0; }
+  thead th:last-child  { border-radius: 0 4px 0 0; }
+
+  .day-row td {
+    background: var(--day-bg);
+    font-weight: 700;
+    font-size: 9pt;
+    color: var(--navy);
+    padding: 7px 10px;
+    letter-spacing: .3px;
+  }
+
+  tbody tr:not(.day-row) {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  tbody tr:not(.day-row) td {
+    padding: 7px 10px;
+    vertical-align: middle;
+  }
+
+  tbody tr:not(.day-row):nth-child(even) { background: #f9fafd; }
+  tbody tr:not(.day-row):hover { background: #eef1fa; }
+
+  .phase-tag {
+    display: inline-block;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--sky);
+    color: #fff;
+  }
+
+  .phase-tag.move-in  { background: #FDF4E5; color: #1a1a1a; }
+  .phase-tag.move-out { background: #FDF4E5; color: #1a1a1a; }
+  .phase-tag.welcome  { background: #F1EDF7; color: #2A195A; }
+  .phase-tag.exhibit  { background: #F1EDF7; color: #2A195A; }
+
+  .name-pill {
+    display: inline-block;
+    background: #e8e8e8;
+    color: #1a1a1a;
+    font-size: 8.5pt;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin: 1px 2px 1px 0;
+    white-space: nowrap;
+  }
+
+  td.time-col { font-weight: 600; color: #1a1a1a; white-space: nowrap; }
+
+  /* ── MOVE IN/OUT SECTION ─────────────────────── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+
+  .info-block {
+    background: var(--light-bg);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 12px 14px;
+  }
+
+  .info-block h4 {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .info-block ul { list-style: none; }
+
+  .info-block ul li {
+    font-size: 9.5pt;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .info-block ul li:last-child { border-bottom: none; }
+
+  .info-block ul li .li-label { color: var(--muted); font-size: 9pt; }
+  .info-block ul li .li-val   { font-weight: 400; color: #1a1a1a; text-align: right; }
+
+  /* ── CONTACTS ────────────────────────────────── */
+  .contacts-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .contact-card {
+    flex: 1;
+    background: var(--light-bg);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    padding: 10px 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .contact-icon {
+    width: 30px; height: 30px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 12pt;
+    color: #fff;
+  }
+
+  .contact-name { font-weight: 700; font-size: 10pt; color: var(--navy); }
+  .contact-role { font-size: 8pt; color: var(--muted); }
+  .contact-email a { font-size: 9pt; color: var(--blue); text-decoration: none; }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+
+<div class="sheet">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="event-label">Team Prep Sheet</div>
+      <div class="event-title">HFMA AC26</div>
+    </div>
+    <div class="header-meta">
+      <p><span style="display:inline-block; margin-bottom:5px; background:var(--navy); color:#fff; font-size:7.5pt; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:3px;">BOOTH 661</span><br>Gaylord National Resort<br>Oxon Hill, MD</p>
+    </div>
+  </div>
+
+  <!-- LOGISTICS -->
+  <div class="section-label">Event Logistics</div>
+  <div class="logistics-grid">
+<div class="logi-card">
+      <div class="card-title">Conference Dates</div>
+      <div class="card-value">June 7 – 10, 2026<br><a href="https://events.hfma.org/event/annual/2026-agenda" style="display:inline-block; margin-top:6px; font-size:8pt; font-weight:700; color:#fff; background:var(--navy); padding:3px 10px; border-radius:3px; text-decoration:none; letter-spacing:.5px;">View Full Agenda →</a></div>
+    </div>
+    <div class="logi-card">
+      <div class="card-title">Dinner at Walrus</div>
+      <div class="card-value"><strong>June 8 · 7–9 PM</strong><br><span style="font-size:8pt;">Co-host with Stedi · 50 attendees</span><br><a href="https://luma.com/hca7tn2q" style="display:inline-block; margin-top:6px; font-size:8pt; font-weight:700; color:#fff; background:var(--navy); padding:3px 10px; border-radius:3px; text-decoration:none; letter-spacing:.5px;">View Event Invite →</a><a href="https://docs.google.com/spreadsheets/d/1rzNsXuy6OJlsa1AqqvW6b4t8sj6IEGhjsR6WN1GlNPc/edit?usp=drive_link" style="display:inline-block; margin-top:6px; margin-left:6px; font-size:8pt; font-weight:700; color:var(--navy); background:transparent; border:1.5px solid var(--navy); padding:3px 10px; border-radius:3px; text-decoration:none; letter-spacing:.5px;">Guest List →</a></div>
+    </div>
+  </div>
+
+  <!-- MOVE IN / EXHIBIT / MOVE OUT -->
+  <div class="section-label">Schedule Overview</div>
+  <div class="info-block" style="margin-bottom:22px;">
+    <h4> Exhibit Hours</h4>
+    <ul>
+      <li><span class="li-label">Sun, June 7</span><span class="li-val">5:30 PM – 7:00 PM</span></li>
+      <li><span class="li-label">Mon, June 8</span><span class="li-val">7:00 AM – 5:30 PM</span></li>
+      <li><span class="li-label">Tue, June 9</span><span class="li-val">7:00 AM – 3:00 PM</span></li>
+    </ul>
+  </div>
+
+
+
+  <!-- EXECUTIVE CONNECTIONS -->
+  <div class="section-label">Executive Connections (Peter)</div>
+  <div style="font-size:9pt; color:var(--muted); line-height:1.55; margin-bottom:12px;">Executive-level leaders from healthcare provider organizations select vendors and product/service categories they want to learn more about, then sit down for a series of highly curated 15-minute meetings. Below are the guests we're connecting with.</div>
+  <div class="info-block" style="margin-bottom:22px;">
+    <table style="width:100%; font-size:9pt; border-collapse:collapse; margin-bottom:14px;">
+      <thead>
+        <tr style="background:var(--navy); color:#fff;">
+          <th style="padding:7px 10px; text-align:left; font-size:7.5pt; letter-spacing:.8px; text-transform:uppercase; font-weight:700; border-radius:4px 0 0 0;">Day</th>
+          <th style="padding:7px 10px; text-align:left; font-size:7.5pt; letter-spacing:.8px; text-transform:uppercase; font-weight:700;">Time</th>
+          <th style="padding:7px 10px; text-align:left; font-size:7.5pt; letter-spacing:.8px; text-transform:uppercase; font-weight:700;">Table</th>
+          <th style="padding:7px 10px; text-align:left; font-size:7.5pt; letter-spacing:.8px; text-transform:uppercase; font-weight:700;">Guest</th>
+          <th style="padding:7px 10px; text-align:left; font-size:7.5pt; letter-spacing:.8px; text-transform:uppercase; font-weight:700; border-radius:0 4px 0 0;">Title &amp; Organization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--rule);">
+          <td style="padding:8px 10px; font-weight:600;">Mon, Jun 8</td>
+          <td style="padding:8px 10px; color:#555;">1:10 – 1:25 PM</td>
+          <td style="padding:8px 10px; font-weight:700;">119</td>
+          <td style="padding:8px 10px; font-weight:600;">Von Senethavilay</td>
+          <td style="padding:8px 10px; color:#555; font-size:8.5pt;">Revenue Cycle Director · Columbia County Health System</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--rule); background:#f9f9f9;">
+          <td style="padding:8px 10px; font-weight:600;">Tue, Jun 9</td>
+          <td style="padding:8px 10px; color:#555;">1:10 – 1:25 PM</td>
+          <td style="padding:8px 10px; font-weight:700;">101</td>
+          <td style="padding:8px 10px; font-weight:600;">Sarah Ginnetti</td>
+          <td style="padding:8px 10px; color:#555; font-size:8.5pt;">AVP Revenue Cycle · UConn Health</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; font-weight:600;">Tue, Jun 9</td>
+          <td style="padding:8px 10px; color:#555;">1:30 – 1:45 PM</td>
+          <td style="padding:8px 10px; font-weight:700;">82</td>
+          <td style="padding:8px 10px; font-weight:600;">Nikki Harper</td>
+          <td style="padding:8px 10px; color:#555; font-size:8.5pt;">Chair, Revenue Cycle Analytics · Mayo Clinic</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Logistics -->
+    <div style="background:#F1EDF7; border-radius:4px; padding:10px 13px; font-size:8.5pt; color:#1a1a1a; line-height:1.6;">
+      <div style="font-weight:700; margin-bottom:8px; font-size:9pt;">Logistics</div>
+      <div style="display:flex; flex-direction:column; gap:6px; font-size:8.5pt; line-height:1.5;">
+        <div style="display:flex; gap:8px;"><span style="flex-shrink:0;">•</span><span>Walk toward the back of the exhibit hall to the left to find the EC area (our booth is right next to it).</span></div>
+        <div style="display:flex; gap:8px;"><span style="flex-shrink:0;">•</span><span>Alison will be available at a kiosk in the area. No need to check in, but she's there if you need assistance.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDIVIDUAL MEETINGS -->
+  <div class="page-break"></div>
+  <div class="section-label">Individual Meetings</div>
+  <div class="two-col" style="margin-bottom:22px;">
+    <div class="info-block">
+      <h4>Lunch with HURC</h4>
+      <ul>
+        <li><span class="li-label">Date</span><span class="li-val">Tuesday, June 9</span></li>
+        <li><span class="li-label">Attendees</span><span class="li-val">Kevin Coloton, Mike Hite, Peter Pollio</span></li>
+      </ul>
+    </div>
+    <div class="info-block">
+      <h4>Coffee with Akasa</h4>
+      <ul>
+        <li><span class="li-label">Date</span><span class="li-val">Tuesday, June 9 · 9:00 AM</span></li>
+        <li><span class="li-label">Attendee</span><span class="li-val">Ben Beadle-Ryby</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CEO SPEAKING SESSION -->
+  <div class="section-label">CEO Speaking Session</div>
+  <div class="info-block" style="margin-bottom:22px;">
+    <div style="display:flex; gap:16px; align-items:flex-start; flex-wrap:wrap;">
+      <div style="flex:1; min-width:200px;">
+        <div style="font-size:11pt; font-weight:700; color:var(--navy); margin-bottom:4px;">Revenue Cycle of the Future: Insights from Leaders</div>
+        <div style="font-size:8.5pt; color:var(--muted); margin-bottom:8px;">Wed, June 10 · 9:10–10:00 AM ET</div>
+        <div style="font-size:9pt; color:var(--text); line-height:1.55;">Sam is joining an expert panel to unpack data and concepts from HFMA's latest "Healthcare Revenue Cycle of the Future" report — covering AI-powered solutions, staffing, payer-provider collaboration, and tech-savvy consumers.</div>
+      </div>
+      <div style="flex-shrink:0; min-width:200px;">
+        <div style="font-size:7.5pt; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">Panelists</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:var(--sky); display:flex; align-items:center; justify-content:center; font-size:10pt; color:#fff; font-weight:700; flex-shrink:0;">S</div>
+            <div><div style="font-size:9pt; font-weight:700; color:var(--navy);">Sam Schwager</div><div style="font-size:8pt; color:var(--muted);">CEO &amp; Co-Founder · SuperDial</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#b0a8d0; display:flex; align-items:center; justify-content:center; font-size:10pt; color:#fff; font-weight:700; flex-shrink:0;">C</div>
+            <div><div style="font-size:9pt; font-weight:600; color:var(--text);">Christopher Murray</div><div style="font-size:8pt; color:var(--muted);">Managing Director · Huron</div></div>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:28px; height:28px; border-radius:50%; background:#b0a8d0; display:flex; align-items:center; justify-content:center; font-size:10pt; color:#fff; font-weight:700; flex-shrink:0;">E</div>
+            <div><div style="font-size:9pt; font-weight:600; color:var(--text);">Eric Levine</div><div style="font-size:8pt; color:var(--muted);">SVP, Healthcare PMI Sales Head · US Bank</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY STATION -->
+  <div class="section-label">Activity Station</div>
+  <div class="info-block" style="margin-bottom:22px;">
+    <div style="display:flex; gap:16px; align-items:flex-start; margin-bottom:10px;">
+      <div style="flex:1;">
+        <div style="font-size:11pt; font-weight:700; color:var(--navy); margin-bottom:4px;"> Portrait Station</div>
+        <div style="font-size:9.5pt; color:var(--text); line-height:1.55;"><a href="https://www.sketchbot.com/" style="color:var(--navy); font-weight:600;">SketchBot</a> will be hosting a small table at our booth. Guest portraits are analyzed and drawn by the SketchBots to create a unique, personalized takeaway — all in as quick as <strong>60 seconds</strong>.</div>
+      </div>
+      <div style="flex-shrink:0; min-width:220px;">
+        <table style="width:100%; font-size:9pt; border-collapse:collapse;">
+          <thead><tr><th style="background:var(--navy); color:#fff; padding:6px 10px; text-align:left; font-size:7.5pt; letter-spacing:.8px; text-transform:uppercase; border-radius:4px 4px 0 0;" colspan="2">Setup &amp; Activation</th></tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--rule);"><td style="padding:6px 10px; color:var(--muted); font-size:8.5pt;">Setup</td><td style="padding:6px 10px; font-weight:600; color:var(--navy); text-align:right;">Mon Jun 8 · 7:00–8:00 AM</td></tr>
+            <tr style="border-bottom:1px solid var(--rule); background:#f9fafd;"><td style="padding:6px 10px; color:var(--muted); font-size:8.5pt;">Live · Mon Jun 8</td><td style="padding:6px 10px; font-weight:600; color:var(--navy); text-align:right;">8:00 AM – 4:00 PM</td></tr>
+            <tr><td style="padding:6px 10px; color:var(--muted); font-size:8.5pt;">Live · Tue Jun 9</td><td style="padding:6px 10px; font-weight:600; color:var(--navy); text-align:right;">8:00 AM – 3:00 PM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="font-size:9pt; background:#E8F3E6; border-left:3px solid var(--navy); padding:8px 11px; border-radius:0 4px 4px 0; color:var(--text);"><strong>Lead Incentive:</strong> Guests who complete the SketchBot activity &amp; book a demo will receive a <strong>$25 or $50 gift card</strong>.</div>
+  </div>
+
+  <!-- NETWORKING EVENTS -->
+  <div class="section-label">Conference Networking Events</div>
+  <div class="two-col" style="margin-bottom:22px;">
+    <div class="info-block">
+      <h4> RCM Remix</h4>
+      <ul>
+        <li><span class="li-label">Women's Event</span><span class="li-val">Jun 8 · 6:00–7:00 PM</span></li>
+        <li><span class="li-label">Main Event</span><span class="li-val">Jun 8 · 7:00–10:00 PM</span></li>
+        <li><span class="li-label">Location</span><span class="li-val">Succotash, 186 Waterfront St</span></li>
+      </ul>
+      <div style="margin-top:8px; font-size:8.5pt; color:var(--muted); line-height:1.45;"><a href="https://enablecomp.com/rcm-remix-event-rsvp/" style="color:var(--sky); font-weight:600;">RSVP Here →</a></div>
+    </div>
+    <div class="info-block">
+      <h4> Sips &amp; Sweets with R1</h4>
+      <ul>
+        <li><span class="li-label">Date</span><span class="li-val">Mon, Jun 8 · 8:00–11:00 PM</span></li>
+        <li><span class="li-label">Location</span><span class="li-val">Lookout 18, Top of Gaylord</span></li>
+      </ul>
+      <div style="margin-top:8px; font-size:8.5pt; color:var(--muted); line-height:1.45;"><a href="https://forms.office.com/pages/responsepage.aspx?id=S9_BJeoAOU6YvV8RQ8XF36sl2ksyphxDlRGam5bBBCRUNTE5RUNCRTkwQ1NCR1BXNU83SFlJU0g0WS4u&route=shorturl" style="color:var(--sky); font-weight:600;">RSVP Here →</a></div>
+    </div>
+  </div>
+
+  <!-- BOOTH COVERAGE TABLE — page 2 -->
+  <div class="page-break"></div>
+  <div class="schedule-section">
+    <div class="section-label">Booth Coverage Schedule</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:22%">Time Slot</th>
+          <th style="width:18%">Phase</th>
+          <th>Shift Lead 1</th>
+          <th>Shift Lead 2</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Sunday June 7 -->
+        <tr class="day-row"><td colspan="5">Sunday, June 7</td></tr>
+        <tr>
+          <td class="time-col">8:00 AM – 3:30 PM</td>
+          <td><span class="phase-tag move-in">Move In</span></td>
+          <td><span class="name-pill">Kelly Eng</span></td>
+          <td><span class="name-pill">David Khaydatov</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">5:30 PM – 7:00 PM</td>
+          <td><span class="phase-tag welcome" style="white-space:nowrap;">Welcome Reception</span></td>
+          <td colspan="3"><span class="name-pill">Everyone</span></td>
+        </tr>
+
+        <!-- Monday June 8 -->
+        <tr class="day-row"><td colspan="5">Monday, June 8</td></tr>
+        <tr>
+          <td class="time-col">8:00 AM – 10:00 AM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Zachary Antell</span></td>
+          <td><span class="name-pill">Peter Pollio</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">10:00 AM – 12:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Zachary Antell</span></td>
+          <td><span class="name-pill">Jessica Dasher</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">12:00 PM – 2:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Rachel Coughlin</span></td>
+          <td><span class="name-pill">Jessica Dasher</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">2:00 PM – 4:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Charlie Donahue</span></td>
+          <td><span class="name-pill">Rachel Coughlin</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">4:00 PM – 6:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Charlie Donahue</span></td>
+          <td><span class="name-pill">David Khaydatov</span></td>
+        </tr>
+
+        <!-- Tuesday June 9 -->
+        <tr class="day-row"><td colspan="5">Tuesday, June 9</td></tr>
+        <tr>
+          <td class="time-col">8:00 AM – 10:00 AM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Charlie Donahue</span></td>
+          <td><span class="name-pill">Jessica Dasher</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">10:00 AM – 12:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Rachel Coughlin</span></td>
+          <td><span class="name-pill">Zachary Antell</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">12:00 PM – 2:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Peter Pollio</span></td>
+          <td><span class="name-pill">David Khaydatov</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">2:00 PM – 3:00 PM</td>
+          <td><span class="phase-tag exhibit">Exhibition</span></td>
+          <td><span class="name-pill">Peter Pollio</span></td>
+          <td><span class="name-pill">David Khaydatov</span></td>
+        </tr>
+        <tr>
+          <td class="time-col">3:00 PM – 8:00 PM</td>
+          <td><span class="phase-tag move-out">Move Out</span></td>
+          <td><span class="name-pill">Kelly Eng</span></td>
+          <td></td>
+        </tr>
+
+        <!-- Wednesday June 10 -->
+        <tr class="day-row"><td colspan="5">Wednesday, June 10</td></tr>
+        <tr>
+          <td class="time-col">8:00 AM – 11:00 AM</td>
+          <td><span class="phase-tag move-out">Move Out</span></td>
+          <td colspan="3" style="color:var(--muted); font-style:italic;">Move-out window — coordinate with team</td>
+        </tr>
+
+      </tbody>
+    </table>
+  <div style="margin-top:8px; font-size:8.5pt; color:#555; text-align:right;">For up-to-date booth coverage slots, <a href="https://docs.google.com/spreadsheets/d/1RhW1LGDhMjAtJtX1v1td_mY4w_94e2n4f5rcmDRtSsI/edit?usp=sharing" style="color:var(--navy); font-weight:600;">click here</a>.</div>
+  </div>
+
+  <!-- CONTACTS -->
+  <div class="section-label">HFMA Contacts</div>
+  <div class="contacts-row">
+    <div class="contact-card">
+      <div class="contact-icon">A</div>
+      <div>
+        <div class="contact-name">Alison Mossey</div>
+        <div class="contact-role">HFMA Event Contact</div>
+        <div class="contact-email"><a href="mailto:amossey@hfma.org">amossey@hfma.org</a></div><div class="contact-email" style="margin-top:2px; font-size:7.5pt;">708-492-3390</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">S</div>
+      <div>
+        <div class="contact-name">Steve Roth</div>
+        <div class="contact-role">HFMA Event Contact</div>
+        <div class="contact-email"><a href="mailto:sroth@hfma.org">sroth@hfma.org</a></div><div class="contact-email" style="margin-top:2px; font-size:7.5pt;">847-922-0910</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>HFMA AC26 · Team Prep Sheet</span>
+    <span>Gaylord National Resort, Oxon Hill MD · June 7–10, 2026</span>
+  </div>
+
+</div><!-- /sheet -->
+</body>
+</html>
